@@ -42,8 +42,8 @@
 
             <Button
                 android:id="@id/num1"
-                android:text="1"
-                style="@style/BtnTypeB"/>
+                style="@style/BtnTypeB"
+                android:text="1" />
 
             <Button
                 android:id="@id/num4"
@@ -74,8 +74,8 @@
 
             <Button
                 android:id="@id/num2"
-                android:text="2"
-                style="@style/BtnTypeB"/>
+                style="@style/BtnTypeB"
+                android:text="2" />
 
             <Button
                 android:id="@id/num5"
