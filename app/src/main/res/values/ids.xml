@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="num1" type="id" />
+    <item name="num4" type="id" />
+    <item name="num7" type="id" />
+    <item name="del" type="id" />
+    <item name="num2" type="id" />
+    <item name="num5" type="id" />
+    <item name="num8" type="id" />
+    <item name="point" type="id" />
+    <item name="ac" type="id" />
+    <item name="num3" type="id" />
+    <item name="num6" type="id" />
+    <item name="num9" type="id" />
+    <item name="div" type="id" />
+    <item name="minus" type="id" />
+    <item name="times" type="id" />
+    <item name="plus" type="id" />
+    <item name="equals" type="id" />
+    <item name="num0" type="id"/>
+</resources>
