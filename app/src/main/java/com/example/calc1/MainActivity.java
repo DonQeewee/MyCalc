@@ -28,7 +28,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
 
-        binding.off.setOnClickListener(v -> binding.screen.setVisibility(View.GONE));
+        binding.off.setOnClickListener(v -> {
+            binding.screen.setVisibility(View.GONE);
+        });
         binding.on.setOnClickListener(v -> {
             binding.screen.setVisibility(View.VISIBLE);
             binding.screen.setText("0");
@@ -37,84 +39,40 @@ public class MainActivity extends AppCompatActivity {
             firstNum = 0;
             binding.screen.setText("0");
         });
-        binding.num0.setOnClickListener(v -> {
-            binding.screen.setText("0");
-        });
-        binding.num1.setOnClickListener(v -> {
-            binding.screen.setText("1");
-        });
-        binding.num2.setOnClickListener(v -> {
-            binding.screen.setText("2");
-        });
-        binding.num3.setOnClickListener(v -> {
-            binding.screen.setText("3");
-        });
-        binding.num4.setOnClickListener(v -> {
-            binding.screen.setText("4");
-        });
-        binding.num5.setOnClickListener(v -> {
-            binding.screen.setText("5");
-        });
-        binding.num6.setOnClickListener(v -> {
-            binding.screen.setText("6");
-        });
-        binding.num7.setOnClickListener(v -> {
-            binding.screen.setText("7");
-        });
-        binding.num8.setOnClickListener(v -> {
-            binding.screen.setText("8");
-        });
-        binding.num9.setOnClickListener(v -> {
-            binding.screen.setText("9");
-        });
-
-        ArrayList<Button> nums = new ArrayList<>();
-        nums.add(binding.num0);
-        nums.add(binding.num1);
-        nums.add(binding.num2);
-        nums.add(binding.num3);
-        nums.add(binding.num4);
-        nums.add(binding.num5);
-        nums.add(binding.num6);
-        nums.add(binding.num7);
-        nums.add(binding.num8);
-        nums.add(binding.num9);
-
-        for (Button b : nums) {
-            if (!binding.screen.getText().toString().equals("0")) {
-                binding.screen.setText(binding.screen.getText().toString() + b.getText().toString());
-            } else {
-                binding.screen.setText(b.getText().toString());
+        //Number buttons click listeners
+        View.OnClickListener numberClickListener = v ->{
+            Button button = (Button) v;
+            String currentText = binding.screen.getText().toString();
+            if (currentText.equals("0")){
+                binding.screen.setText(button.getText().toString());
+            }else {
+                binding.screen.setText(currentText + button.getText().toString());
             }
-        }
+        };
+
+        binding.num0.setOnClickListener(numberClickListener);
+        binding.num1.setOnClickListener(numberClickListener);
+        binding.num2.setOnClickListener(numberClickListener);
+        binding.num3.setOnClickListener(numberClickListener);
+        binding.num4.setOnClickListener(numberClickListener);
+        binding.num5.setOnClickListener(numberClickListener);
+        binding.num6.setOnClickListener(numberClickListener);
+        binding.num7.setOnClickListener(numberClickListener);
+        binding.num8.setOnClickListener(numberClickListener);
+        binding.num9.setOnClickListener(numberClickListener);
 
         binding.div.setOnClickListener(v -> {
-            binding.screen.setText("/");
+            handleOperatorClick("/");
         });
         binding.times.setOnClickListener(v -> {
-            binding.screen.setText("X");
+            handleOperatorClick("X");
         });
         binding.minus.setOnClickListener(v -> {
-            binding.screen.setText("-");
+            handleOperatorClick("-");
         });
         binding.plus.setOnClickListener(v -> {
-            binding.screen.setText("+");
+            handleOperatorClick("+");
         });
-
-
-        ArrayList<Button> operators = new ArrayList<>();
-        operators.add(binding.div);
-        operators.add(binding.times);
-        operators.add(binding.minus);
-        operators.add(binding.plus);
-        for (Button b : operators) {
-            b.setOnClickListener(v -> {
-                firstNum = Double.parseDouble(binding.screen.getText().toString());
-                operation = b.getText().toString();
-                binding.screen.setText(b.getText().toString());
-
-            });
-        }
 
         binding.del.setOnClickListener(v -> {
             String num = binding.screen.getText().toString();
@@ -126,9 +84,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         binding.point.setOnClickListener(v -> {
-            binding.screen.setText(".");
-            if (!binding.screen.getText().toString().contains(".")) {
-                binding.screen.setText(binding.screen.getText().toString() + ".");
+            String currentText = binding.screen.getText().toString();
+            if (!currentText.contains(".")) {
+                binding.screen.setText(currentText + ".");
             }
         });
 
@@ -155,5 +113,11 @@ public class MainActivity extends AppCompatActivity {
             firstNum = result;
         });
 
+    }
+    private void handleOperatorClick(String operator) {
+        firstNum = Double.parseDouble(binding.screen.getText().toString());
+        operation = operator;
+        binding.screen.setText(operator);
+        binding.screen.setText("0");
     }
 }
